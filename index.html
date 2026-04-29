@@ -748,8 +748,12 @@ function applyFP() {
 
 // ── NAVIGATION ──────────────────────────────────────────────────
 function goTo(entity) {
-  // When detail pages exist, use: window.location.href = 'pages/' + entity + '.html';
-  toast('Opening ' + PAGE[entity] + ' monitor — page coming soon');
+  const pages = { orders: 'pages/orders.html' };
+  if (pages[entity]) {
+    window.location.href = pages[entity];
+  } else {
+    toast('Opening ' + PAGE[entity] + ' monitor — page coming soon');
+  }
 }
 
 // ── EVENT HIGHLIGHT ──────────────────────────────────────────────
