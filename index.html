@@ -8,11 +8,8 @@
 <style>
   :root {
     --brand-red: #E2231A;
-    --brand-dark: #1a1a2e;
     --sidebar-bg: #ffffff;
     --sidebar-border: #e8eaed;
-    --nav-active-bg: #f0f4ff;
-    --nav-active-color: #1a56db;
     --nav-hover: #f5f6f8;
     --text-primary: #1a1d23;
     --text-secondary: #6b7280;
@@ -23,11 +20,8 @@
     --accent-blue: #1a56db;
     --accent-green: #059669;
     --accent-amber: #d97706;
-    --accent-purple: #7c3aed;
     --accent-red: #dc2626;
     --fg-guard: #0f172a;
-
-    /* FlowGuard palette */
     --fg-teal: #0d9488;
     --fg-teal-light: #ccfbf1;
     --fg-blue: #1d4ed8;
@@ -39,191 +33,194 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--main-bg);
     color: var(--text-primary);
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
+    display: flex; height: 100vh; overflow: hidden;
   }
 
-  /* ─── SIDEBAR ─────────────────────────────── */
+  /* ── SIDEBAR ──────────────────────────────── */
   .sidebar {
-    width: 220px;
-    min-width: 220px;
+    width: 220px; min-width: 220px;
     background: var(--sidebar-bg);
     border-right: 1px solid var(--sidebar-border);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow-y: auto;
+    display: flex; flex-direction: column;
+    height: 100vh; overflow-y: auto;
   }
-
   .sidebar-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     padding: 18px 16px 14px;
     border-bottom: 1px solid var(--sidebar-border);
   }
-
   .logo-box {
-    width: 38px; height: 38px;
-    background: var(--brand-red);
-    border-radius: 6px;
-    display: grid; place-items: center;
+    width: 38px; height: 38px; background: var(--brand-red);
+    border-radius: 6px; display: grid; place-items: center;
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600; color: #fff; font-size: 18px;
   }
-
-  .logo-text { line-height: 1.1; }
-  .logo-text .name { font-weight: 700; font-size: 15px; color: var(--text-primary); }
+  .logo-text .name { font-weight: 700; font-size: 15px; }
   .logo-text .sub  { font-size: 9px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .5px; }
-
   .nav-section { padding: 8px 0; flex: 1; }
-
   .nav-item {
     display: flex; align-items: center; gap: 10px;
-    padding: 9px 16px;
-    font-size: 13.5px; font-weight: 400;
-    color: var(--text-secondary);
-    cursor: pointer;
-    border-left: 3px solid transparent;
-    transition: all .15s;
-    user-select: none;
+    padding: 9px 16px; font-size: 13.5px; font-weight: 400;
+    color: var(--text-secondary); cursor: pointer;
+    border-left: 3px solid transparent; transition: all .15s; user-select: none;
   }
   .nav-item:hover { background: var(--nav-hover); color: var(--text-primary); }
-  .nav-item.active {
-    background: var(--nav-active-bg);
-    color: var(--nav-active-color);
-    border-left-color: var(--nav-active-color);
-    font-weight: 600;
-  }
   .nav-item svg { flex-shrink: 0; opacity: .7; }
-  .nav-item.active svg { opacity: 1; }
   .nav-item .chevron { margin-left: auto; opacity: .5; }
-
-  /* FlowGuard special nav item */
   .nav-item.flowguard-nav {
-    background: linear-gradient(90deg, #f0fdf9 0%, #eff6ff 100%);
-    color: var(--fg-teal);
-    border-left-color: var(--fg-teal);
-    font-weight: 600;
+    background: linear-gradient(90deg,#f0fdf9,#eff6ff);
+    color: var(--fg-teal); border-left-color: var(--fg-teal); font-weight: 600;
   }
   .nav-item.flowguard-nav svg { opacity: 1; }
-
-  .nav-divider {
-    height: 1px; background: var(--border);
-    margin: 6px 14px;
-  }
-
-  .nav-group-label {
-    font-size: 10px; text-transform: uppercase;
-    letter-spacing: .8px; color: var(--text-muted);
-    padding: 10px 16px 4px;
-    font-weight: 500;
-  }
-
-  .sidebar-bottom {
-    border-top: 1px solid var(--sidebar-border);
-    padding: 10px 0 6px;
-  }
+  .nav-divider { height: 1px; background: var(--border); margin: 6px 14px; }
+  .sidebar-bottom { border-top: 1px solid var(--sidebar-border); padding: 10px 0 6px; }
   .sidebar-bottom .nav-item { font-size: 13px; }
 
-  /* ─── MAIN ────────────────────────────────── */
-  .main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+  /* ── MAIN ─────────────────────────────────── */
+  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
   .topbar {
-    background: #fff;
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    height: 52px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-shrink: 0;
+    background: #fff; border-bottom: 1px solid var(--border);
+    padding: 0 32px; height: 52px;
+    display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
   }
-
   .breadcrumb { font-size: 13px; color: var(--text-muted); }
   .breadcrumb span { color: var(--text-primary); font-weight: 500; }
-
   .topbar-right { display: flex; align-items: center; gap: 20px; }
-
   .topbar-badge {
     display: flex; align-items: center; gap: 6px;
     background: #fef2f2; color: #dc2626;
     border: 1px solid #fecaca; border-radius: 20px;
-    padding: 4px 10px; font-size: 12px; font-weight: 500;
+    padding: 4px 10px; font-size: 12px; font-weight: 500; cursor: pointer;
   }
   .topbar-badge .dot {
     width: 6px; height: 6px; border-radius: 50%;
     background: #dc2626; animation: pulse 1.5s ease-in-out infinite;
   }
-  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
+  .sign-out { font-size: 13px; color: var(--accent-blue); cursor: pointer; display: flex; align-items: center; gap: 5px; }
 
-  .sign-out {
-    font-size: 13px; color: var(--accent-blue); cursor: pointer;
+  /* ── SEARCH + FILTER BAR ─────────────────── */
+  .search-filter-bar {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 36px 0; flex-shrink: 0;
+    animation: fadeUp .3s ease both;
+  }
+  .search-wrap { position: relative; flex: 1; max-width: 400px; }
+  .search-wrap .si {
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    pointer-events: none; color: var(--text-muted);
+  }
+  .search-input {
+    width: 100%; padding: 8px 12px 8px 32px;
+    border: 1px solid var(--border); border-radius: 8px;
+    font-size: 13px; font-family: 'DM Sans',sans-serif;
+    background: #fff; color: var(--text-primary); outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .search-input:focus { border-color: var(--fg-teal); box-shadow: 0 0 0 3px rgba(13,148,136,.1); }
+  .search-input::placeholder { color: var(--text-muted); }
+  .search-dd {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+    background: #fff; border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.1); z-index: 200; overflow: hidden; display: none;
+  }
+  .search-dd.open { display: block; }
+  .sdr {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 14px; cursor: pointer; transition: background .1s;
+  }
+  .sdr:hover { background: var(--nav-hover); }
+  .sdr-icon { width: 28px; height: 28px; border-radius: 7px; display: grid; place-items: center; flex-shrink: 0; }
+  .sdr-icon.teal   { background: var(--fg-teal-light); }
+  .sdr-icon.amber  { background: var(--fg-amber-light); }
+  .sdr-icon.violet { background: var(--fg-violet-light); }
+  .sdr-icon.blue   { background: var(--fg-blue-light); }
+  .sdr-main { font-size: 13px; font-weight: 500; }
+  .sdr-sub  { font-size: 11.5px; color: var(--text-muted); }
+  .sdr-tag  { margin-left: auto; font-size: 10.5px; padding: 2px 7px; border-radius: 20px; font-weight: 600; }
+  .sdr-tag.order   { background: var(--fg-teal-light);   color: var(--fg-teal); }
+  .sdr-tag.billing { background: var(--fg-amber-light);  color: var(--fg-amber); }
+  .sdr-tag.sub     { background: var(--fg-violet-light); color: var(--fg-violet); }
+  .sdr-tag.stmt    { background: var(--fg-blue-light);   color: var(--fg-blue); }
+  .sdr-empty { padding: 14px; text-align: center; font-size: 13px; color: var(--text-muted); }
+
+  /* chips */
+  .chips { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+  .chip {
+    padding: 5px 11px; border-radius: 20px; font-size: 12px; font-weight: 500;
+    border: 1px solid var(--border); background: #fff;
+    color: var(--text-secondary); cursor: pointer; transition: all .15s; user-select: none;
     display: flex; align-items: center; gap: 5px;
   }
+  .chip:hover { border-color: var(--fg-teal); color: var(--fg-teal); }
+  .chip.active { background: var(--fg-teal); border-color: var(--fg-teal); color: #fff; }
+  .chip.c-alert.active { background: var(--accent-red); border-color: var(--accent-red); color: #fff; }
 
-  .content {
-    flex: 1; overflow-y: auto;
-    padding: 32px 36px;
+  /* filter panel */
+  .fp-wrap { position: relative; margin-left: auto; }
+  .fp-panel {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    width: 290px; background: #fff;
+    border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.12); z-index: 300; padding: 16px; display: none;
   }
+  .fp-panel.open { display: block; }
+  .fp-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+  .fp-grp { margin-bottom: 13px; }
+  .fp-lbl { font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--text-muted); margin-bottom: 7px; font-weight: 600; }
+  .fp-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .fp-o {
+    padding: 4px 10px; border-radius: 20px; font-size: 12px;
+    border: 1px solid var(--border); cursor: pointer; transition: all .15s;
+    color: var(--text-secondary); background: #fff;
+  }
+  .fp-o:hover { border-color: var(--fg-teal); color: var(--fg-teal); }
+  .fp-o.sel { background: var(--fg-teal); border-color: var(--fg-teal); color: #fff; }
+  .fp-acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; border-top: 1px solid var(--border); padding-top: 12px; }
+  .fp-btn { padding: 6px 14px; border-radius: 7px; font-size: 12.5px; font-weight: 500; cursor: pointer; border: none; }
+  .fp-btn-r { background: var(--nav-hover); color: var(--text-secondary); }
+  .fp-btn-a { background: var(--fg-teal); color: #fff; }
 
-  /* ─── PAGE HEADER ─────────────────────────── */
+  /* buttons */
+  .btn {
+    padding: 8px 15px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; border: none; display: flex; align-items: center; gap: 6px; transition: all .15s;
+  }
+  .btn-outline { background: #fff; border: 1px solid var(--border); color: var(--text-primary); }
+  .btn-outline:hover { background: var(--nav-hover); }
+  .btn-primary { background: linear-gradient(135deg,var(--fg-teal),var(--fg-blue)); color: #fff; box-shadow: 0 2px 8px rgba(13,148,136,.3); }
+  .btn-primary:hover { opacity:.9; transform:translateY(-1px); }
+
+  /* ── CONTENT ──────────────────────────────── */
+  .content { flex: 1; overflow-y: auto; padding: 20px 36px 32px; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
   .page-header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    margin-bottom: 28px;
-    animation: fadeUp .4s ease both;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px; animation: fadeUp .4s ease both;
   }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
   .page-title-group { display: flex; align-items: center; gap: 14px; }
-
   .page-icon {
     width: 46px; height: 46px; border-radius: 12px;
-    background: linear-gradient(135deg, #0d9488, #1d4ed8);
+    background: linear-gradient(135deg,#0d9488,#1d4ed8);
     display: grid; place-items: center;
     box-shadow: 0 4px 12px rgba(13,148,136,.25);
   }
-
   .page-title { font-size: 22px; font-weight: 700; color: var(--fg-guard); letter-spacing: -.3px; }
   .page-subtitle { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+  .last-refresh { font-size: 11.5px; color: var(--text-muted); font-family: 'IBM Plex Mono',monospace; }
 
-  .header-actions { display: flex; gap: 10px; }
-  .btn {
-    padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500;
-    cursor: pointer; border: none; display: flex; align-items: center; gap: 6px;
-    transition: all .15s;
-  }
-  .btn-outline {
-    background: #fff; border: 1px solid var(--border); color: var(--text-primary);
-  }
-  .btn-outline:hover { background: var(--nav-hover); }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--fg-teal), var(--fg-blue));
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(13,148,136,.3);
-  }
-  .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
-
-  /* ─── STATS ROW ───────────────────────────── */
+  /* stats */
   .stats-row {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    margin-bottom: 28px;
-    animation: fadeUp .4s .08s ease both;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
+    margin-bottom: 24px; animation: fadeUp .4s .08s ease both;
   }
-
   .stat-card {
     background: var(--card-bg); border: 1px solid var(--border);
     border-radius: 14px; padding: 18px 20px;
@@ -231,163 +228,122 @@
     transition: box-shadow .2s;
   }
   .stat-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); }
-
-  .stat-info {}
   .stat-label { font-size: 11.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .6px; font-weight: 500; }
-  .stat-value { font-size: 26px; font-weight: 700; margin: 4px 0 2px; color: var(--text-primary); font-family: 'IBM Plex Mono', monospace; }
-  .stat-delta {
-    font-size: 12px; font-weight: 500;
-    display: flex; align-items: center; gap: 3px;
-  }
-  .stat-delta.up { color: var(--accent-green); }
-  .stat-delta.warn { color: var(--accent-amber); }
+  .stat-value { font-size: 26px; font-weight: 700; margin: 4px 0 2px; font-family: 'IBM Plex Mono',monospace; }
+  .stat-delta { font-size: 12px; font-weight: 500; }
+  .stat-delta.up    { color: var(--accent-green); }
+  .stat-delta.warn  { color: var(--accent-amber); }
   .stat-delta.alert { color: var(--accent-red); }
-
-  .stat-icon {
-    width: 38px; height: 38px; border-radius: 10px;
-    display: grid; place-items: center; flex-shrink: 0;
-  }
-  .stat-icon.teal   { background: var(--fg-teal-light);   }
-  .stat-icon.blue   { background: var(--fg-blue-light);   }
-  .stat-icon.amber  { background: var(--fg-amber-light);  }
+  .stat-icon { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; }
+  .stat-icon.teal   { background: var(--fg-teal-light); }
+  .stat-icon.blue   { background: var(--fg-blue-light); }
+  .stat-icon.amber  { background: var(--fg-amber-light); }
   .stat-icon.violet { background: var(--fg-violet-light); }
 
-  /* ─── FLOW ENTITIES ───────────────────────── */
-  .section-label {
-    font-size: 11px; text-transform: uppercase; letter-spacing: .8px;
-    color: var(--text-muted); font-weight: 600; margin-bottom: 12px;
-  }
-
+  /* entity grid */
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); font-weight: 600; margin-bottom: 12px; }
   .entity-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
-    margin-bottom: 28px;
-    animation: fadeUp .4s .16s ease both;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 14px;
+    margin-bottom: 24px; animation: fadeUp .4s .16s ease both;
   }
-
   .entity-card {
     background: var(--card-bg); border: 1px solid var(--border);
     border-radius: 14px; padding: 20px;
-    cursor: pointer; transition: all .2s;
-    position: relative; overflow: hidden;
+    cursor: pointer; transition: all .2s; position: relative; overflow: hidden;
   }
   .entity-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-    border-radius: 14px 14px 0 0;
+    content:''; position: absolute; top:0; left:0; right:0; height:3px; border-radius:14px 14px 0 0;
   }
-  .entity-card.orders::before   { background: linear-gradient(90deg, #0d9488, #06b6d4); }
-  .entity-card.billing::before  { background: linear-gradient(90deg, #d97706, #f59e0b); }
-  .entity-card.subs::before     { background: linear-gradient(90deg, #7c3aed, #8b5cf6); }
-  .entity-card.stmts::before    { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
-
-  .entity-card:hover {
-    border-color: transparent;
-    box-shadow: 0 6px 24px rgba(0,0,0,.1);
-    transform: translateY(-2px);
-  }
-
+  .entity-card.orders::before  { background: linear-gradient(90deg,#0d9488,#06b6d4); }
+  .entity-card.billing::before { background: linear-gradient(90deg,#d97706,#f59e0b); }
+  .entity-card.subs::before    { background: linear-gradient(90deg,#7c3aed,#8b5cf6); }
+  .entity-card.stmts::before   { background: linear-gradient(90deg,#1d4ed8,#3b82f6); }
+  .entity-card:hover { border-color: transparent; box-shadow: 0 6px 24px rgba(0,0,0,.1); transform: translateY(-2px); }
+  .entity-card.filtered-out { opacity: .3; pointer-events: none; transform: none !important; }
   .entity-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-  .entity-icon {
-    width: 36px; height: 36px; border-radius: 9px;
-    display: grid; place-items: center;
-  }
+  .entity-icon { width: 36px; height: 36px; border-radius: 9px; display: grid; place-items: center; }
   .entity-icon.teal   { background: var(--fg-teal-light); }
   .entity-icon.amber  { background: var(--fg-amber-light); }
   .entity-icon.violet { background: var(--fg-violet-light); }
   .entity-icon.blue   { background: var(--fg-blue-light); }
-
-  .entity-status-pill {
-    font-size: 10.5px; padding: 3px 8px; border-radius: 20px; font-weight: 600;
-  }
-  .entity-status-pill.live   { background: #dcfce7; color: #166534; }
-  .entity-status-pill.warn   { background: #fef3c7; color: #92400e; }
-  .entity-status-pill.info   { background: #dbeafe; color: #1e3a8a; }
-
-  .entity-name { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+  .entity-status-pill { font-size: 10.5px; padding: 3px 8px; border-radius: 20px; font-weight: 600; }
+  .entity-status-pill.live { background:#dcfce7; color:#166534; }
+  .entity-status-pill.warn { background:#fef3c7; color:#92400e; }
+  .entity-status-pill.info { background:#dbeafe; color:#1e3a8a; }
+  .entity-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
   .entity-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 14px; }
-
   .entity-mini-stats { display: flex; gap: 16px; }
-  .mini-stat-item {}
-  .mini-stat-val { font-size: 17px; font-weight: 700; color: var(--text-primary); font-family: 'IBM Plex Mono', monospace; }
+  .mini-stat-val { font-size: 17px; font-weight: 700; font-family: 'IBM Plex Mono',monospace; }
   .mini-stat-lbl { font-size: 10.5px; color: var(--text-muted); margin-top: 1px; }
+  .entity-arrow {
+    position: absolute; bottom: 14px; right: 14px;
+    opacity: 0; transition: opacity .2s, transform .2s;
+    color: var(--text-muted); transform: translateX(-4px);
+  }
+  .entity-card:hover .entity-arrow { opacity: 1; transform: translateX(0); }
 
-  /* ─── BOTTOM PANELS ───────────────────────── */
-  .bottom-panels {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    animation: fadeUp .4s .24s ease both;
-  }
-
-  .panel {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 14px; overflow: hidden;
-  }
-  .panel-header {
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .panel-title { font-size: 13.5px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 7px; }
+  /* bottom panels */
+  .bottom-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; animation: fadeUp .4s .24s ease both; }
+  .panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .panel-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .panel-title { font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 7px; }
   .panel-link  { font-size: 12px; color: var(--accent-blue); cursor: pointer; }
+  .panel-link:hover { text-decoration: underline; }
   .panel-body  { padding: 6px 0; }
-
-  /* Recent events */
   .event-item {
     display: flex; align-items: flex-start; gap: 12px;
-    padding: 10px 18px;
-    border-bottom: 1px solid #f3f4f6;
-    transition: background .1s;
+    padding: 10px 18px; border-bottom: 1px solid #f3f4f6;
+    cursor: pointer; transition: background .1s;
   }
   .event-item:last-child { border-bottom: none; }
-  .event-item:hover { background: #fafafa; }
-
-  .event-dot {
-    width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0;
-  }
+  .event-item:hover { background: #f9fafb; }
+  .event-item.hl { background: #f0fdf9; border-left: 3px solid var(--fg-teal); padding-left: 15px; }
+  .event-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
   .event-dot.green  { background: #10b981; }
   .event-dot.amber  { background: #f59e0b; }
   .event-dot.red    { background: #ef4444; }
   .event-dot.blue   { background: #3b82f6; }
   .event-dot.purple { background: #8b5cf6; }
-
   .event-info { flex: 1; }
-  .event-main { font-size: 12.5px; color: var(--text-primary); font-weight: 500; }
+  .event-main { font-size: 12.5px; font-weight: 500; }
   .event-sub  { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; }
-  .event-time { font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace; white-space: nowrap; }
-
-  /* Lifecycle bars */
-  .lifecycle-item {
-    padding: 11px 18px;
-    border-bottom: 1px solid #f3f4f6;
-  }
-  .lifecycle-item:last-child { border-bottom: none; }
-  .lc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
-  .lc-name { font-size: 12.5px; font-weight: 500; color: var(--text-primary); }
-  .lc-meta { font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace; }
-  .lc-bar-track {
-    height: 6px; background: #f1f5f9; border-radius: 99px; overflow: hidden; position: relative;
-  }
-  .lc-bar-fill {
-    height: 100%; border-radius: 99px;
-    transition: width .4s ease;
-  }
-  .lc-bar-fill.teal   { background: linear-gradient(90deg, #0d9488, #06b6d4); }
-  .lc-bar-fill.amber  { background: linear-gradient(90deg, #d97706, #f59e0b); }
-  .lc-bar-fill.violet { background: linear-gradient(90deg, #7c3aed, #8b5cf6); }
-  .lc-bar-fill.blue   { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
+  .event-time { font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono',monospace; white-space: nowrap; }
+  .lc-item { padding: 11px 18px; border-bottom: 1px solid #f3f4f6; cursor: pointer; transition: background .1s; }
+  .lc-item:last-child { border-bottom: none; }
+  .lc-item:hover { background: #f9fafb; }
+  .lc-hd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
+  .lc-name { font-size: 12.5px; font-weight: 500; }
+  .lc-meta { font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono',monospace; }
+  .lc-track { height: 6px; background: #f1f5f9; border-radius: 99px; overflow: hidden; }
+  .lc-fill { height: 100%; border-radius: 99px; width: 0; transition: width .7s cubic-bezier(.4,0,.2,1); }
+  .lc-fill.teal   { background: linear-gradient(90deg,#0d9488,#06b6d4); }
+  .lc-fill.amber  { background: linear-gradient(90deg,#d97706,#f59e0b); }
+  .lc-fill.violet { background: linear-gradient(90deg,#7c3aed,#8b5cf6); }
+  .lc-fill.blue   { background: linear-gradient(90deg,#1d4ed8,#3b82f6); }
   .lc-stages { display: flex; justify-content: space-between; margin-top: 5px; }
-  .lc-stage-label { font-size: 10px; color: var(--text-muted); }
+  .lc-stage { font-size: 10px; color: var(--text-muted); }
 
-  /* ─── RESPONSIVE TWEAKS ───────────────────── */
-  @media (max-width: 1100px) {
-    .stats-row { grid-template-columns: repeat(2, 1fr); }
-    .entity-grid { grid-template-columns: repeat(2, 1fr); }
-    .bottom-panels { grid-template-columns: 1fr; }
+  /* toast */
+  .toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(16px);
+    background: #1a1d23; color: #fff; padding: 10px 18px; border-radius: 10px;
+    font-size: 13px; font-weight: 500; z-index: 1000;
+    opacity: 0; transition: opacity .2s, transform .2s;
+    pointer-events: none; white-space: nowrap;
+    display: flex; align-items: center; gap: 8px;
   }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* overlay */
+  .overlay { position: fixed; inset: 0; z-index: 100; display: none; }
+  .overlay.open { display: block; }
+
+  footer { text-align: right; padding: 8px 24px; font-size: 11px; color: #9ca3af; border-top: 1px solid #e5e7eb; background: #fff; flex-shrink: 0; }
 </style>
 </head>
 <body>
 
-<!-- ═══ SIDEBAR ═══════════════════════════════════════════════════════ -->
+<!-- ══ SIDEBAR ══════════════════════════════════════════════════════ -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <div class="logo-box">L</div>
@@ -396,92 +352,142 @@
       <div class="sub">Lenovo Subscription Platform</div>
     </div>
   </div>
-
   <nav class="nav-section">
     <div class="nav-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-      Home
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Home
     </div>
     <div class="nav-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>
-      Customers
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>Customers
     </div>
     <div class="nav-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
-      Catalogues
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>Catalogues
       <svg class="chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
     </div>
     <div class="nav-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-      Contracts
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Contracts
       <svg class="chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
     </div>
     <div class="nav-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 000 4h6a2 2 0 000-4M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-      Subscriptions
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 000 4h6a2 2 0 000-4M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Subscriptions
       <svg class="chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
     </div>
-
     <div class="nav-divider"></div>
-
     <div class="nav-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-      Tools
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Tools
       <svg class="chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
     </div>
-
-    <!-- FlowGuard — top-level, same as Tools & Reporting -->
     <div class="nav-item flowguard-nav">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#0d9488" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-      FlowGuard
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#0d9488" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>FlowGuard
     </div>
-
     <div class="nav-item">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-      Reporting
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Reporting
       <svg class="chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
     </div>
   </nav>
-
   <div class="sidebar-bottom">
     <div class="nav-item">
-      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-      My Downloads
+      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>My Downloads
     </div>
     <div class="nav-item">
-      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-      zfan2
+      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>zfan2
     </div>
     <div class="nav-item" style="font-size:12px;">
-      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
-      Collapse Menu
+      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>Collapse Menu
     </div>
   </div>
 </aside>
 
-
-<!-- ═══ MAIN ══════════════════════════════════════════════════════════ -->
+<!-- ══ MAIN ══════════════════════════════════════════════════════════ -->
 <div class="main">
 
-  <!-- Topbar -->
   <header class="topbar">
     <div class="breadcrumb"><span>FlowGuard</span></div>
     <div class="topbar-right">
-      <div class="topbar-badge">
-        <div class="dot"></div>
-        3 Alerts
+      <div class="topbar-badge" onclick="toast('Alerts: BLR-0094 retry · STM-0488 dispute · ORD-20477 stalled')">
+        <div class="dot"></div>3 Alerts
       </div>
-      <div class="sign-out">
-        Sign Out
+      <div class="sign-out">Sign Out
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
       </div>
     </div>
   </header>
 
+  <!-- Search + Filter bar -->
+  <div class="search-filter-bar">
+    <div class="search-wrap">
+      <svg class="si" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input class="search-input" id="si" type="text" placeholder="Search orders, billing runs, subscriptions…" autocomplete="off">
+      <div class="search-dd" id="sdd"></div>
+    </div>
+
+    <div class="chips">
+      <div class="chip active" onclick="setChip(this,'all')">All</div>
+      <div class="chip" onclick="setChip(this,'orders')">
+        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>Orders
+      </div>
+      <div class="chip" onclick="setChip(this,'billing')">
+        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Billing
+      </div>
+      <div class="chip" onclick="setChip(this,'subs')">
+        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>Subscriptions
+      </div>
+      <div class="chip" onclick="setChip(this,'stmts')">
+        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Statements
+      </div>
+      <div class="chip c-alert" onclick="setChip(this,'alerts')">
+        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>Alerts only
+      </div>
+    </div>
+
+    <div class="fp-wrap">
+      <button class="btn btn-outline" onclick="toggleFP()">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707l-6.414 6.414A1 1 0 0014 13.828V19l-4 2v-7.172a1 1 0 00-.293-.707L3.293 6.707A1 1 0 013 6V4z"/></svg>
+        Filter
+        <span id="fc" style="display:none;background:var(--fg-teal);color:#fff;border-radius:20px;padding:1px 6px;font-size:11px;"></span>
+      </button>
+      <div class="fp-panel" id="fpp">
+        <div class="fp-title">Filter Flows</div>
+        <div class="fp-grp">
+          <div class="fp-lbl">Status</div>
+          <div class="fp-opts">
+            <div class="fp-o" onclick="toggleO(this)">Active</div>
+            <div class="fp-o" onclick="toggleO(this)">Stalled</div>
+            <div class="fp-o" onclick="toggleO(this)">Completed</div>
+            <div class="fp-o" onclick="toggleO(this)">Failed</div>
+          </div>
+        </div>
+        <div class="fp-grp">
+          <div class="fp-lbl">Time Range</div>
+          <div class="fp-opts">
+            <div class="fp-o" onclick="toggleO(this)">Last 1h</div>
+            <div class="fp-o sel" onclick="toggleO(this)">Last 24h</div>
+            <div class="fp-o" onclick="toggleO(this)">Last 7d</div>
+            <div class="fp-o" onclick="toggleO(this)">Last 30d</div>
+          </div>
+        </div>
+        <div class="fp-grp">
+          <div class="fp-lbl">Health</div>
+          <div class="fp-opts">
+            <div class="fp-o" onclick="toggleO(this)">Healthy</div>
+            <div class="fp-o" onclick="toggleO(this)">Warning</div>
+            <div class="fp-o" onclick="toggleO(this)">Critical</div>
+          </div>
+        </div>
+        <div class="fp-acts">
+          <button class="fp-btn fp-btn-r" onclick="resetFP()">Reset</button>
+          <button class="fp-btn fp-btn-a" onclick="applyFP()">Apply</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" onclick="toast('New Monitor setup — coming soon')">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>New Monitor
+    </button>
+  </div>
+
   <!-- Content -->
   <div class="content">
 
-    <!-- Page Header -->
     <div class="page-header">
       <div class="page-title-group">
         <div class="page-icon">
@@ -492,307 +498,296 @@
           <div class="page-subtitle">Monitor Orders · Statements · Billing · Subscriptions — end-to-end</div>
         </div>
       </div>
-      <div class="header-actions">
-        <button class="btn btn-outline">
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707l-6.414 6.414A1 1 0 0014 13.828V19l-4 2v-7.172a1 1 0 00-.293-.707L3.293 6.707A1 1 0 013 6V4z"/></svg>
-          Filter
-        </button>
-        <button class="btn btn-primary">
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
-          New Monitor
-        </button>
-      </div>
+      <div class="last-refresh">Refreshed: <span id="lr"></span></div>
     </div>
 
-    <!-- Stats Row -->
+    <!-- Stats -->
     <div class="stats-row">
       <div class="stat-card">
-        <div class="stat-info">
-          <div class="stat-label">Active Flows</div>
-          <div class="stat-value">1,284</div>
-          <div class="stat-delta up">↑ 48 today</div>
-        </div>
-        <div class="stat-icon teal">
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#0d9488" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        </div>
+        <div><div class="stat-label">Active Flows</div><div class="stat-value">1,284</div><div class="stat-delta up">↑ 48 today</div></div>
+        <div class="stat-icon teal"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#0d9488" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
       </div>
       <div class="stat-card">
-        <div class="stat-info">
-          <div class="stat-label">Anomalies</div>
-          <div class="stat-value">17</div>
-          <div class="stat-delta warn">↑ 3 new</div>
-        </div>
-        <div class="stat-icon amber">
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#d97706" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-        </div>
+        <div><div class="stat-label">Anomalies</div><div class="stat-value">17</div><div class="stat-delta warn">↑ 3 new</div></div>
+        <div class="stat-icon amber"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#d97706" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
       </div>
       <div class="stat-card">
-        <div class="stat-info">
-          <div class="stat-label">Stalled Flows</div>
-          <div class="stat-value">5</div>
-          <div class="stat-delta alert">⚠ Action needed</div>
-        </div>
-        <div class="stat-icon violet">
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
+        <div><div class="stat-label">Stalled Flows</div><div class="stat-value">5</div><div class="stat-delta alert">⚠ Action needed</div></div>
+        <div class="stat-icon violet"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
       </div>
       <div class="stat-card">
-        <div class="stat-info">
-          <div class="stat-label">Completed (24h)</div>
-          <div class="stat-value">392</div>
-          <div class="stat-delta up">↑ 96.2% SLA</div>
-        </div>
-        <div class="stat-icon blue">
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#1d4ed8" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
+        <div><div class="stat-label">Completed (24h)</div><div class="stat-value">392</div><div class="stat-delta up">↑ 96.2% SLA</div></div>
+        <div class="stat-icon blue"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#1d4ed8" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
       </div>
     </div>
 
     <!-- Entity Cards -->
-    <div class="section-label">Monitor by Entity</div>
+    <div class="section-label">Monitor by Entity — click to open detail view</div>
     <div class="entity-grid">
 
-      <!-- Orders -->
-      <div class="entity-card orders">
+      <div class="entity-card orders" data-entity="orders" onclick="location.href='pages/orders.html'">
         <div class="entity-header">
-          <div class="entity-icon teal">
-            <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="#0d9488" stroke-width="2"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-          </div>
+          <div class="entity-icon teal"><svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="#0d9488" stroke-width="2"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
           <span class="entity-status-pill live">Live</span>
         </div>
         <div class="entity-name">Orders</div>
         <div class="entity-desc">Track order lifecycle from placement through fulfillment, invoicing, and closure.</div>
         <div class="entity-mini-stats">
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">428</div>
-            <div class="mini-stat-lbl">Active</div>
-          </div>
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">2</div>
-            <div class="mini-stat-lbl">Stalled</div>
-          </div>
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">99.1%</div>
-            <div class="mini-stat-lbl">Success</div>
-          </div>
+          <div><div class="mini-stat-val">428</div><div class="mini-stat-lbl">Active</div></div>
+          <div><div class="mini-stat-val">2</div><div class="mini-stat-lbl">Stalled</div></div>
+          <div><div class="mini-stat-val">99.1%</div><div class="mini-stat-lbl">Success</div></div>
         </div>
+        <div class="entity-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
       </div>
 
-      <!-- Scheduled Billing -->
-      <div class="entity-card billing">
+      <div class="entity-card billing" data-entity="billing" onclick="goTo('billing')">
         <div class="entity-header">
-          <div class="entity-icon amber">
-            <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="#d97706" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          </div>
+          <div class="entity-icon amber"><svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="#d97706" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
           <span class="entity-status-pill warn">3 Alerts</span>
         </div>
         <div class="entity-name">Scheduled Billing</div>
         <div class="entity-desc">Monitor billing run schedules, retry cycles, and payment confirmation flows.</div>
         <div class="entity-mini-stats">
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">74</div>
-            <div class="mini-stat-lbl">Queued</div>
-          </div>
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">3</div>
-            <div class="mini-stat-lbl">Failing</div>
-          </div>
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">94.6%</div>
-            <div class="mini-stat-lbl">Success</div>
-          </div>
+          <div><div class="mini-stat-val">74</div><div class="mini-stat-lbl">Queued</div></div>
+          <div><div class="mini-stat-val">3</div><div class="mini-stat-lbl">Failing</div></div>
+          <div><div class="mini-stat-val">94.6%</div><div class="mini-stat-lbl">Success</div></div>
         </div>
+        <div class="entity-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
       </div>
 
-      <!-- Subscriptions -->
-      <div class="entity-card subs">
+      <div class="entity-card subs" data-entity="subs" onclick="goTo('subs')">
         <div class="entity-header">
-          <div class="entity-icon violet">
-            <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          </div>
+          <div class="entity-icon violet"><svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
           <span class="entity-status-pill live">Live</span>
         </div>
         <div class="entity-name">Subscriptions</div>
         <div class="entity-desc">Watch subscription activations, renewals, upgrades, downgrades, and cancellations.</div>
         <div class="entity-mini-stats">
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">689</div>
-            <div class="mini-stat-lbl">Active</div>
-          </div>
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">12</div>
-            <div class="mini-stat-lbl">Renewing</div>
-          </div>
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">97.3%</div>
-            <div class="mini-stat-lbl">Health</div>
-          </div>
+          <div><div class="mini-stat-val">689</div><div class="mini-stat-lbl">Active</div></div>
+          <div><div class="mini-stat-val">12</div><div class="mini-stat-lbl">Renewing</div></div>
+          <div><div class="mini-stat-val">97.3%</div><div class="mini-stat-lbl">Health</div></div>
         </div>
+        <div class="entity-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
       </div>
 
-      <!-- Statements -->
-      <div class="entity-card stmts">
+      <div class="entity-card stmts" data-entity="stmts" onclick="goTo('stmts')">
         <div class="entity-header">
-          <div class="entity-icon blue">
-            <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="#1d4ed8" stroke-width="2"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          </div>
+          <div class="entity-icon blue"><svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="#1d4ed8" stroke-width="2"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
           <span class="entity-status-pill info">Monthly</span>
         </div>
         <div class="entity-name">Statements</div>
         <div class="entity-desc">Track statement generation, delivery, reconciliation, and dispute lifecycle.</div>
         <div class="entity-mini-stats">
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">93</div>
-            <div class="mini-stat-lbl">Generated</div>
-          </div>
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">2</div>
-            <div class="mini-stat-lbl">Disputed</div>
-          </div>
-          <div class="mini-stat-item">
-            <div class="mini-stat-val">100%</div>
-            <div class="mini-stat-lbl">Delivered</div>
-          </div>
+          <div><div class="mini-stat-val">93</div><div class="mini-stat-lbl">Generated</div></div>
+          <div><div class="mini-stat-val">2</div><div class="mini-stat-lbl">Disputed</div></div>
+          <div><div class="mini-stat-val">100%</div><div class="mini-stat-lbl">Delivered</div></div>
         </div>
+        <div class="entity-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
       </div>
 
-    </div><!-- /entity-grid -->
+    </div>
 
     <!-- Bottom Panels -->
     <div class="bottom-panels">
 
-      <!-- Recent Events -->
       <div class="panel">
         <div class="panel-header">
-          <div class="panel-title">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            Recent Flow Events
-          </div>
-          <div class="panel-link">View all →</div>
+          <div class="panel-title"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Recent Flow Events</div>
+          <div class="panel-link" onclick="toast('Full event log — coming soon')">View all →</div>
         </div>
         <div class="panel-body">
-          <div class="event-item">
+          <div class="event-item" onclick="hlEvent(this,'orders')">
             <div class="event-dot green"></div>
-            <div class="event-info">
-              <div class="event-main">Order #ORD-20481 completed successfully</div>
-              <div class="event-sub">Fulfilled → Invoiced → Closed</div>
-            </div>
+            <div class="event-info"><div class="event-main">Order #ORD-20481 completed successfully</div><div class="event-sub">Fulfilled → Invoiced → Closed</div></div>
             <div class="event-time">2m ago</div>
           </div>
-          <div class="event-item">
+          <div class="event-item" onclick="hlEvent(this,'billing')">
             <div class="event-dot amber"></div>
-            <div class="event-info">
-              <div class="event-main">Billing run BLR-0094 — payment retry #2</div>
-              <div class="event-sub">Customer CUST-3812 · $4,280.00</div>
-            </div>
+            <div class="event-info"><div class="event-main">Billing run BLR-0094 — payment retry #2</div><div class="event-sub">Customer CUST-3812 · $4,280.00</div></div>
             <div class="event-time">11m ago</div>
           </div>
-          <div class="event-item">
+          <div class="event-item" onclick="hlEvent(this,'subs')">
             <div class="event-dot purple"></div>
-            <div class="event-info">
-              <div class="event-main">Subscription SUB-1152 auto-renewed</div>
-              <div class="event-sub">Lenovo TruScale · 12-month term</div>
-            </div>
+            <div class="event-info"><div class="event-main">Subscription SUB-1152 auto-renewed</div><div class="event-sub">Lenovo TruScale · 12-month term</div></div>
             <div class="event-time">18m ago</div>
           </div>
-          <div class="event-item">
+          <div class="event-item" onclick="hlEvent(this,'stmts')">
             <div class="event-dot red"></div>
-            <div class="event-info">
-              <div class="event-main">Statement STM-0488 dispute raised</div>
-              <div class="event-sub">Amount mismatch · Assigned to ops team</div>
-            </div>
+            <div class="event-info"><div class="event-main">Statement STM-0488 dispute raised</div><div class="event-sub">Amount mismatch · Assigned to ops team</div></div>
             <div class="event-time">34m ago</div>
           </div>
-          <div class="event-item">
+          <div class="event-item" onclick="hlEvent(this,'orders')">
             <div class="event-dot blue"></div>
-            <div class="event-info">
-              <div class="event-main">Order #ORD-20479 entered provisioning</div>
-              <div class="event-sub">Est. completion: ~2h</div>
-            </div>
+            <div class="event-info"><div class="event-main">Order #ORD-20479 entered provisioning</div><div class="event-sub">Est. completion: ~2h</div></div>
             <div class="event-time">41m ago</div>
           </div>
         </div>
       </div>
 
-      <!-- Lifecycle Progress -->
       <div class="panel">
         <div class="panel-header">
-          <div class="panel-title">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-            Lifecycle Progress
-          </div>
-          <div class="panel-link">Details →</div>
+          <div class="panel-title"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Lifecycle Progress</div>
+          <div class="panel-link" onclick="toast('Detailed lifecycle view — coming soon')">Details →</div>
         </div>
         <div class="panel-body">
-
-          <div class="lifecycle-item">
-            <div class="lc-header">
-              <div class="lc-name">Orders</div>
-              <div class="lc-meta">428 / 434 complete</div>
-            </div>
-            <div class="lc-bar-track"><div class="lc-bar-fill teal" style="width:98.6%"></div></div>
-            <div class="lc-stages">
-              <span class="lc-stage-label">Placed</span>
-              <span class="lc-stage-label">Provisioning</span>
-              <span class="lc-stage-label">Invoiced</span>
-              <span class="lc-stage-label">Closed</span>
-            </div>
+          <div class="lc-item" onclick="goTo('orders')">
+            <div class="lc-hd"><div class="lc-name">Orders</div><div class="lc-meta">428 / 434 complete</div></div>
+            <div class="lc-track"><div class="lc-fill teal" data-w="98.6%"></div></div>
+            <div class="lc-stages"><span class="lc-stage">Placed</span><span class="lc-stage">Provisioning</span><span class="lc-stage">Invoiced</span><span class="lc-stage">Closed</span></div>
           </div>
-
-          <div class="lifecycle-item">
-            <div class="lc-header">
-              <div class="lc-name">Scheduled Billing</div>
-              <div class="lc-meta">70 / 74 processed</div>
-            </div>
-            <div class="lc-bar-track"><div class="lc-bar-fill amber" style="width:94.6%"></div></div>
-            <div class="lc-stages">
-              <span class="lc-stage-label">Queued</span>
-              <span class="lc-stage-label">Running</span>
-              <span class="lc-stage-label">Retry</span>
-              <span class="lc-stage-label">Settled</span>
-            </div>
+          <div class="lc-item" onclick="goTo('billing')">
+            <div class="lc-hd"><div class="lc-name">Scheduled Billing</div><div class="lc-meta">70 / 74 processed</div></div>
+            <div class="lc-track"><div class="lc-fill amber" data-w="94.6%"></div></div>
+            <div class="lc-stages"><span class="lc-stage">Queued</span><span class="lc-stage">Running</span><span class="lc-stage">Retry</span><span class="lc-stage">Settled</span></div>
           </div>
-
-          <div class="lifecycle-item">
-            <div class="lc-header">
-              <div class="lc-name">Subscriptions</div>
-              <div class="lc-meta">671 / 689 healthy</div>
-            </div>
-            <div class="lc-bar-track"><div class="lc-bar-fill violet" style="width:97.4%"></div></div>
-            <div class="lc-stages">
-              <span class="lc-stage-label">Pending</span>
-              <span class="lc-stage-label">Active</span>
-              <span class="lc-stage-label">Renewing</span>
-              <span class="lc-stage-label">Closed</span>
-            </div>
+          <div class="lc-item" onclick="goTo('subs')">
+            <div class="lc-hd"><div class="lc-name">Subscriptions</div><div class="lc-meta">671 / 689 healthy</div></div>
+            <div class="lc-track"><div class="lc-fill violet" data-w="97.4%"></div></div>
+            <div class="lc-stages"><span class="lc-stage">Pending</span><span class="lc-stage">Active</span><span class="lc-stage">Renewing</span><span class="lc-stage">Closed</span></div>
           </div>
-
-          <div class="lifecycle-item">
-            <div class="lc-header">
-              <div class="lc-name">Statements</div>
-              <div class="lc-meta">93 / 93 delivered</div>
-            </div>
-            <div class="lc-bar-track"><div class="lc-bar-fill blue" style="width:100%"></div></div>
-            <div class="lc-stages">
-              <span class="lc-stage-label">Draft</span>
-              <span class="lc-stage-label">Generated</span>
-              <span class="lc-stage-label">Sent</span>
-              <span class="lc-stage-label">Reconciled</span>
-            </div>
+          <div class="lc-item" onclick="goTo('stmts')">
+            <div class="lc-hd"><div class="lc-name">Statements</div><div class="lc-meta">93 / 93 delivered</div></div>
+            <div class="lc-track"><div class="lc-fill blue" data-w="100%"></div></div>
+            <div class="lc-stages"><span class="lc-stage">Draft</span><span class="lc-stage">Generated</span><span class="lc-stage">Sent</span><span class="lc-stage">Reconciled</span></div>
           </div>
-
         </div>
       </div>
 
-    </div><!-- /bottom-panels -->
+    </div>
+  </div>
 
-  </div><!-- /content -->
+  <footer>Please note: All times displayed in LSP are in UTC time zone.</footer>
+</div>
 
-  <footer style="text-align:right; padding: 8px 24px; font-size:11px; color: #9ca3af; border-top:1px solid #e5e7eb; background:#fff; flex-shrink:0;">
-    Please note: All times displayed in LSP are in UTC time zone.
-  </footer>
+<div class="overlay" id="ov" onclick="closeAll()"></div>
+<div class="toast" id="tk"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span id="tm"></span></div>
 
-</div><!-- /main -->
+<script>
+// ── SEARCH ────────────────────────────────────────────────────────
+const DATA = [
+  {id:'ORD-20481',label:'Order #ORD-20481',sub:'Completed · Fulfilled → Closed',type:'order',entity:'orders'},
+  {id:'ORD-20479',label:'Order #ORD-20479',sub:'In provisioning · Est. 2h',type:'order',entity:'orders'},
+  {id:'ORD-20477',label:'Order #ORD-20477',sub:'Stalled · Awaiting approval',type:'order',entity:'orders'},
+  {id:'BLR-0094', label:'Billing Run BLR-0094',sub:'Payment retry #2 · $4,280',type:'billing',entity:'billing'},
+  {id:'BLR-0091', label:'Billing Run BLR-0091',sub:'Completed · Settled',type:'billing',entity:'billing'},
+  {id:'SUB-1152', label:'Subscription SUB-1152',sub:'Auto-renewed · TruScale',type:'sub',entity:'subs'},
+  {id:'SUB-1148', label:'Subscription SUB-1148',sub:'Active · Annual term',type:'sub',entity:'subs'},
+  {id:'STM-0488', label:'Statement STM-0488',sub:'Dispute raised · Ops review',type:'stmt',entity:'stmts'},
+  {id:'STM-0487', label:'Statement STM-0487',sub:'Delivered · Reconciled',type:'stmt',entity:'stmts'},
+];
+const ICONS = {
+  order:   {c:'teal',  s:'<svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#0d9488" stroke-width="2"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>'},
+  billing: {c:'amber', s:'<svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#d97706" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>'},
+  sub:     {c:'violet',s:'<svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>'},
+  stmt:    {c:'blue',  s:'<svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#1d4ed8" stroke-width="2"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>'},
+};
+const PAGE = {orders:'Orders',billing:'Scheduled Billing',subs:'Subscriptions',stmts:'Statements'};
 
+const si = document.getElementById('si');
+const sdd = document.getElementById('sdd');
+
+si.addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  if (!q) { sdd.classList.remove('open'); document.getElementById('ov').classList.remove('open'); return; }
+  const hits = DATA.filter(d => d.id.toLowerCase().includes(q) || d.label.toLowerCase().includes(q) || d.sub.toLowerCase().includes(q));
+  sdd.innerHTML = hits.length
+    ? hits.slice(0,6).map(d => {
+        const ic = ICONS[d.type];
+        return `<div class="sdr" onclick="pickSearch('${d.entity}','${d.id}')">
+          <div class="sdr-icon ${ic.c}">${ic.s}</div>
+          <div><div class="sdr-main">${esc(d.label)}</div><div class="sdr-sub">${esc(d.sub)}</div></div>
+          <span class="sdr-tag ${d.type}">${d.type.charAt(0).toUpperCase()+d.type.slice(1)}</span>
+        </div>`;
+      }).join('')
+    : `<div class="sdr-empty">No results for "${esc(this.value)}"</div>`;
+  sdd.classList.add('open');
+  document.getElementById('ov').classList.add('open');
+});
+
+function pickSearch(entity, id) {
+  si.value = id; sdd.classList.remove('open');
+  document.getElementById('ov').classList.remove('open');
+  goTo(entity);
+}
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── CHIPS ────────────────────────────────────────────────────────
+function setChip(el, f) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.entity-card').forEach(c => {
+    if (f === 'all') { c.classList.remove('filtered-out'); }
+    else if (f === 'alerts') { c.classList.toggle('filtered-out', !c.querySelector('.entity-status-pill.warn')); }
+    else { c.classList.toggle('filtered-out', c.dataset.entity !== f); }
+  });
+}
+
+// ── FILTER PANEL ────────────────────────────────────────────────
+function toggleFP() {
+  const p = document.getElementById('fpp'), ov = document.getElementById('ov');
+  p.classList.toggle('open'); ov.classList.toggle('open', p.classList.contains('open'));
+}
+function toggleO(el) { el.classList.toggle('sel'); updFC(); }
+function updFC() {
+  const n = document.querySelectorAll('#fpp .fp-o.sel').length;
+  const fc = document.getElementById('fc');
+  n > 0 ? (fc.textContent = n, fc.style.display = 'inline') : (fc.style.display = 'none');
+}
+function resetFP() {
+  document.querySelectorAll('#fpp .fp-o').forEach(o => o.classList.remove('sel'));
+  document.querySelectorAll('#fpp .fp-o')[5].classList.add('sel'); // Last 24h default
+  updFC();
+}
+function applyFP() {
+  const sel = [...document.querySelectorAll('#fpp .fp-o.sel')].map(o => o.textContent);
+  toast('Filter applied: ' + sel.join(', '));
+  document.getElementById('fpp').classList.remove('open');
+  document.getElementById('ov').classList.remove('open');
+  updFC();
+}
+
+// ── NAVIGATION ──────────────────────────────────────────────────
+function goTo(entity) {
+  // When detail pages exist, use: window.location.href = 'pages/' + entity + '.html';
+  toast('Opening ' + PAGE[entity] + ' monitor — page coming soon');
+}
+
+// ── EVENT HIGHLIGHT ──────────────────────────────────────────────
+function hlEvent(row, entity) {
+  document.querySelectorAll('.event-item.hl').forEach(r => r.classList.remove('hl'));
+  row.classList.add('hl');
+  const card = document.querySelector('.entity-card[data-entity="' + entity + '"]');
+  if (card) {
+    card.style.boxShadow = '0 0 0 3px rgba(13,148,136,.4)';
+    card.scrollIntoView({behavior:'smooth',block:'nearest'});
+    setTimeout(() => card.style.boxShadow = '', 1400);
+  }
+}
+
+// ── CLOSE ALL ────────────────────────────────────────────────────
+function closeAll() {
+  sdd.classList.remove('open');
+  document.getElementById('fpp').classList.remove('open');
+  document.getElementById('ov').classList.remove('open');
+}
+
+// ── TOAST ────────────────────────────────────────────────────────
+let _tt;
+function toast(msg) {
+  const t = document.getElementById('tk');
+  document.getElementById('tm').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(_tt);
+  _tt = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── ON LOAD ──────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  document.getElementById('lr').textContent = new Date().toUTCString().replace('GMT','UTC');
+  setTimeout(() => {
+    document.querySelectorAll('.lc-fill[data-w]').forEach(b => b.style.width = b.dataset.w);
+  }, 500);
+});
+</script>
 </body>
 </html>
