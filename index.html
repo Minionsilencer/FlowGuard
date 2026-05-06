@@ -165,22 +165,49 @@
   .fp-wrap { position: relative; margin-left: auto; }
   .fp-panel {
     position: absolute; top: calc(100% + 8px); right: 0;
-    width: 290px; background: #fff;
+    width: 360px; background: #fff;
     border: 1px solid var(--border); border-radius: 12px;
     box-shadow: 0 8px 28px rgba(0,0,0,.12); z-index: 300; padding: 16px; display: none;
   }
   .fp-panel.open { display: block; }
   .fp-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
-  .fp-grp { margin-bottom: 13px; }
+  .fp-grp { margin-bottom: 14px; }
   .fp-lbl { font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--text-muted); margin-bottom: 7px; font-weight: 600; }
-  .fp-opts { display: flex; flex-wrap: wrap; gap: 6px; }
-  .fp-o {
-    padding: 4px 10px; border-radius: 20px; font-size: 12px;
-    border: 1px solid var(--border); cursor: pointer; transition: all .15s;
-    color: var(--text-secondary); background: #fff;
+  /* searchable select dropdown */
+  .fp-select-wrap { position: relative; }
+  .fp-select-input {
+    width: 100%; padding: 7px 28px 7px 10px;
+    border: 1px solid var(--border); border-radius: 7px;
+    font-size: 12.5px; font-family: 'DM Sans',sans-serif;
+    color: var(--text-primary); background: #fff; outline: none;
+    transition: border-color .15s, box-shadow .15s; cursor: pointer;
   }
-  .fp-o:hover { border-color: var(--fg-teal); color: var(--fg-teal); }
-  .fp-o.sel { background: var(--fg-teal); border-color: var(--fg-teal); color: #fff; }
+  .fp-select-input:focus { border-color: var(--fg-teal); box-shadow: 0 0 0 3px rgba(13,148,136,.1); }
+  .fp-select-input::placeholder { color: var(--text-muted); }
+  .fp-select-icon { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--text-muted); }
+  .fp-dropdown {
+    position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+    background: #fff; border: 1px solid var(--border); border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.1); z-index: 400;
+    max-height: 200px; overflow-y: auto; display: none;
+  }
+  .fp-dropdown.open { display: block; }
+  .fp-dd-item {
+    padding: 7px 12px; font-size: 12.5px; cursor: pointer;
+    color: var(--text-primary); transition: background .1s;
+  }
+  .fp-dd-item:hover { background: var(--nav-hover); }
+  .fp-dd-item.selected { background: var(--fg-teal-light); color: var(--fg-teal); font-weight: 600; }
+  .fp-dd-empty { padding: 10px 12px; font-size: 12px; color: var(--text-muted); text-align: center; }
+  .fp-selected-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; min-height: 0; }
+  .fp-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--fg-teal-light); color: var(--fg-teal);
+    border: 1px solid #a7f3d0; border-radius: 20px;
+    padding: 2px 8px; font-size: 11.5px; font-weight: 500;
+  }
+  .fp-tag-x { cursor: pointer; opacity: .7; font-size: 13px; line-height: 1; }
+  .fp-tag-x:hover { opacity: 1; }
   .fp-acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; border-top: 1px solid var(--border); padding-top: 12px; }
   .fp-btn { padding: 6px 14px; border-radius: 7px; font-size: 12.5px; font-weight: 500; cursor: pointer; border: none; }
   .fp-btn-r { background: var(--nav-hover); color: var(--text-secondary); }
@@ -447,32 +474,29 @@
       </button>
       <div class="fp-panel" id="fpp">
         <div class="fp-title">Filter Flows</div>
+
+        <!-- Sales Org -->
         <div class="fp-grp">
-          <div class="fp-lbl">Status</div>
-          <div class="fp-opts">
-            <div class="fp-o" onclick="toggleO(this)">Active</div>
-            <div class="fp-o" onclick="toggleO(this)">Stalled</div>
-            <div class="fp-o" onclick="toggleO(this)">Completed</div>
-            <div class="fp-o" onclick="toggleO(this)">Failed</div>
+          <div class="fp-lbl">Sales Org</div>
+          <div class="fp-select-wrap">
+            <input class="fp-select-input" id="fpSalesOrgInput" type="text" placeholder="Search Sales Org…" autocomplete="off" oninput="filterFpDd('fpSalesOrgDd','fpSalesOrgInput',SALES_ORGS,'salesOrg')" onfocus="openFpDd('fpSalesOrgDd','fpSalesOrgInput',SALES_ORGS,'salesOrg')">
+            <svg class="fp-select-icon" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <div class="fp-dropdown" id="fpSalesOrgDd"></div>
           </div>
+          <div class="fp-selected-tags" id="fpSalesOrgTags"></div>
         </div>
+
+        <!-- RR Type -->
         <div class="fp-grp">
-          <div class="fp-lbl">Time Range</div>
-          <div class="fp-opts">
-            <div class="fp-o" onclick="toggleO(this)">Last 1h</div>
-            <div class="fp-o sel" onclick="toggleO(this)">Last 24h</div>
-            <div class="fp-o" onclick="toggleO(this)">Last 7d</div>
-            <div class="fp-o" onclick="toggleO(this)">Last 30d</div>
+          <div class="fp-lbl">RR Type</div>
+          <div class="fp-select-wrap">
+            <input class="fp-select-input" id="fpRRTypeInput" type="text" placeholder="Search RR Type…" autocomplete="off" oninput="filterFpDd('fpRRTypeDd','fpRRTypeInput',RR_TYPES,'rrType')" onfocus="openFpDd('fpRRTypeDd','fpRRTypeInput',RR_TYPES,'rrType')">
+            <svg class="fp-select-icon" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <div class="fp-dropdown" id="fpRRTypeDd"></div>
           </div>
+          <div class="fp-selected-tags" id="fpRRTypeTags"></div>
         </div>
-        <div class="fp-grp">
-          <div class="fp-lbl">Health</div>
-          <div class="fp-opts">
-            <div class="fp-o" onclick="toggleO(this)">Healthy</div>
-            <div class="fp-o" onclick="toggleO(this)">Warning</div>
-            <div class="fp-o" onclick="toggleO(this)">Critical</div>
-          </div>
-        </div>
+
         <div class="fp-acts">
           <button class="fp-btn fp-btn-r" onclick="resetFP()">Reset</button>
           <button class="fp-btn fp-btn-a" onclick="applyFP()">Apply</button>
@@ -722,29 +746,132 @@ function setChip(el, f) {
   });
 }
 
+// ── FILTER DATA ──────────────────────────────────────────────────
+const SALES_ORGS = [
+  'AE10','AR10','AT10','AT20','AU10','AU30','BE10','BE20','BR10','BR20',
+  'CA10','CA20','CA30','CH10','CL10','CNZZ','CO10','DE10','DE50','DEFAULT',
+  'DK10','ES10','ES30','FI10','FR10','FR20','GB10','GB30','HK10','HK20',
+  'HK61','HK64','HK65','ID90','IE10','IN10','IN30','IT10','JP10','JP30',
+  'JPQ2','KR10','MX10','MX40','MY10','MY20','NL10','PT20','SA10','SE10',
+  'SG51','SG90','TH10','TW10','TW50','US10','US11','US31'
+];
+const RR_TYPES = [
+  'Absolute_UDS_Subscription','Amazon_Product_Type1','Amazon_Product_Type1_Trial',
+  'Amazon_Product_Type2','Amazon_Product_Type3','Appxite_AvePoint_Offering',
+  'Appxite_Google_Offering','CIoT_Subscription','DWS_finOps_Onetime',
+  'FCCL_FMV_HW_Support','FCCL_FMV_Indi_AI','FCCL_FMV_Indi_DataCloud',
+  'FCCL_FMV_Indi_Go','FCCL_FMV_Indi_Learning','FCCL_FMV_Indi_Learning_Free_Repair',
+  'FCCL_FMV_Indi_Mahjong','FCCL_FMV_Indi_Software','FCCL_Member_Basic',
+  'FCCL_Member_Premium','FCCL_Security','FCCL_Warranty_Data','FCCL_Warranty_LOOXCare',
+  'FCCL_Warranty_Virus','Foxit_UDS_Subscription','Google_UDS_Subscription',
+  'Hoid_IDG_Subscription','Hoid_IDG_Subscription_Trial','Hoid_MBG_Subscription',
+  'Hoid_MBG_Subscription_Trial','ISO_Onsite_Service','Iolo_UDS_Subscription',
+  'LDI_IDG_Subscription','Lenovo_3rd_DaaS','Lenovo_3rd_HW','Lenovo_ARVR_SAAS',
+  'Lenovo_DaaS','Lenovo_DaaS_Bundle','Lenovo_DaaS_Usage','Lenovo_Device_Manager',
+  'Lenovo_Device_Manager_Trial','Lenovo_Management_Service','Lenovo_Management_Service_OneTime',
+  'Lenovo_Predictive_Maintenance','Lenovo_Premium_Support','Lenovo_Service_Subscription'
+];
+
+// selected filter state
+const fpSelected = { salesOrg: [], rrType: [] };
+
 // ── FILTER PANEL ────────────────────────────────────────────────
 function toggleFP() {
   const p = document.getElementById('fpp'), ov = document.getElementById('ov');
-  p.classList.toggle('open'); ov.classList.toggle('open', p.classList.contains('open'));
+  const opening = !p.classList.contains('open');
+  p.classList.toggle('open');
+  ov.classList.toggle('open', opening);
+  if (opening) { closeAll(); p.classList.add('open'); ov.classList.add('open'); }
 }
-function toggleO(el) { el.classList.toggle('sel'); updFC(); }
+
+function openFpDd(ddId, inputId, list, key) {
+  const q = document.getElementById(inputId).value.toLowerCase();
+  renderFpDd(ddId, list, key, q);
+  document.getElementById(ddId).classList.add('open');
+}
+
+function filterFpDd(ddId, inputId, list, key) {
+  const q = document.getElementById(inputId).value.toLowerCase();
+  renderFpDd(ddId, list, key, q);
+  document.getElementById(ddId).classList.add('open');
+}
+
+function renderFpDd(ddId, list, key, q) {
+  const dd = document.getElementById(ddId);
+  const filtered = q ? list.filter(v => v.toLowerCase().includes(q)) : list;
+  if (!filtered.length) {
+    dd.innerHTML = '<div class="fp-dd-empty">No results</div>';
+    return;
+  }
+  dd.innerHTML = filtered.map(v => {
+    const isSel = fpSelected[key].includes(v);
+    return `<div class="fp-dd-item ${isSel?'selected':''}" onclick="toggleFpItem('${key}','${v}','${ddId}')">${v}</div>`;
+  }).join('');
+}
+
+function toggleFpItem(key, val, ddId) {
+  const idx = fpSelected[key].indexOf(val);
+  if (idx > -1) fpSelected[key].splice(idx, 1);
+  else fpSelected[key].push(val);
+  // re-render dropdown to show selection
+  const inputId = ddId.replace('Dd','Input');
+  const list = key === 'salesOrg' ? SALES_ORGS : RR_TYPES;
+  const q = document.getElementById(inputId).value.toLowerCase();
+  renderFpDd(ddId, list, key, q);
+  renderFpTags(key);
+  updFC();
+}
+
+function renderFpTags(key) {
+  const tagsEl = document.getElementById('fp' + key.charAt(0).toUpperCase() + key.slice(1) + 'Tags');
+  tagsEl.innerHTML = fpSelected[key].map(v =>
+    `<span class="fp-tag">${v}<span class="fp-tag-x" onclick="removeFpTag('${key}','${v}')">×</span></span>`
+  ).join('');
+}
+
+function removeFpTag(key, val) {
+  const idx = fpSelected[key].indexOf(val);
+  if (idx > -1) fpSelected[key].splice(idx, 1);
+  renderFpTags(key);
+  updFC();
+}
+
 function updFC() {
-  const n = document.querySelectorAll('#fpp .fp-o.sel').length;
+  const n = fpSelected.salesOrg.length + fpSelected.rrType.length;
   const fc = document.getElementById('fc');
   n > 0 ? (fc.textContent = n, fc.style.display = 'inline') : (fc.style.display = 'none');
 }
+
 function resetFP() {
-  document.querySelectorAll('#fpp .fp-o').forEach(o => o.classList.remove('sel'));
-  document.querySelectorAll('#fpp .fp-o')[5].classList.add('sel'); // Last 24h default
+  fpSelected.salesOrg = []; fpSelected.rrType = [];
+  ['fpSalesOrgTags','fpRRTypeTags'].forEach(id => document.getElementById(id).innerHTML = '');
+  ['fpSalesOrgInput','fpRRTypeInput'].forEach(id => document.getElementById(id).value = '');
+  ['fpSalesOrgDd','fpRRTypeDd'].forEach(id => document.getElementById(id).classList.remove('open'));
   updFC();
 }
+
 function applyFP() {
-  const sel = [...document.querySelectorAll('#fpp .fp-o.sel')].map(o => o.textContent);
-  toast('Filter applied: ' + sel.join(', '));
+  const parts = [];
+  if (fpSelected.salesOrg.length) parts.push('Sales Org: ' + fpSelected.salesOrg.join(', '));
+  if (fpSelected.rrType.length)   parts.push('RR Type: ' + fpSelected.rrType.join(', '));
+  toast(parts.length ? 'Filter applied: ' + parts.join(' | ') : 'No filters selected');
   document.getElementById('fpp').classList.remove('open');
   document.getElementById('ov').classList.remove('open');
-  updFC();
+  // close dropdowns
+  ['fpSalesOrgDd','fpRRTypeDd'].forEach(id => document.getElementById(id).classList.remove('open'));
 }
+
+// close fp dropdowns when clicking outside
+document.addEventListener('click', function(e) {
+  ['fpSalesOrgDd','fpRRTypeDd'].forEach(ddId => {
+    const dd = document.getElementById(ddId);
+    const inp = document.getElementById(ddId.replace('Dd','Input'));
+    if (dd && inp && !dd.contains(e.target) && e.target !== inp) {
+      dd.classList.remove('open');
+    }
+  });
+});
+
 
 // ── NAVIGATION ──────────────────────────────────────────────────
 function goTo(entity) {
